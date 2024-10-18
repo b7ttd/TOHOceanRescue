@@ -1,0 +1,26 @@
+.red-text {
+	color: red;
+}
+.center {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
+}
+body {
+    background-color: lightblue; /* Set the background color to light blue */
+    color: #333; /* Optional: Set the text color for better readability */
+    font-family: Arial, sans-serif; /* Optional: Set a default font */
+    margin: 0; /* Optional: Remove default margin */
+    padding: 0; /* Optional: Remove default padding */
+}
+
+/* Optional: Add some padding to the content */
+.container {
+	text-align: center;
+	padding: 20px;
+}
+h1 {
+	margin: 0;
+}
+
