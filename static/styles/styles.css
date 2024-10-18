@@ -1,18 +1,14 @@
-.red-text {
-	color: red;
-}
-.center {
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-	width: 50%;
-}
+/* Couresy of jwz.org/jwz.css */
 body {
     background-color: lightblue; /* Set the background color to light blue */
     color: #333; /* Optional: Set the text color for better readability */
     font-family: Arial, sans-serif; /* Optional: Set a default font */
-    margin: 0; /* Optional: Remove default margin */
+    margin: 0.5em auto; /* Optional: Remove default margin */
+    max-width:50 em; 
     padding: 0; /* Optional: Remove default padding */
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 /* Optional: Add some padding to the content */
@@ -20,7 +16,42 @@ body {
 	text-align: center;
 	padding: 20px;
 }
-h1 {
-	margin: 0;
+h1 { text-align: center; }
+ .table { 
+	text-align: left; color: #F0F8FF; background: #002D62;
+	font-size: 11pt; padding: 0.2em 4em; margin: 0 auto;
+	text-transform: uppercase; width: 700px;
+	text-shadow: 2px 2px #000;
 }
 
+dt { float: left; font-stye: italic; }
+dd { margin: 0 0 1em 4em; }
+.d12 dd { margin-bottom: 0.3em; }
+
+.container{
+	text-align: center;
+	padding: 20px;
+}
+
+.image_container {
+	position: relative;
+	display: inline-block;
+}
+
+.background_image {
+	display: block;
+	width: 100%;
+	height: 50%;
+}
+
+.overlay_heading {
+	position: absolute;
+	top: 50%
+	left: 50%
+	transform: translate (-50%, -50%);
+	background-color: rgba(255, 255, 255, 0.7);
+	padding: 10px 20px;
+	border-radius: 5px;
+	font-size: 1.5em;
+}
+	
