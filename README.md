@@ -23,14 +23,13 @@ Last edit made 10/18/24.
 ## Things to Work On
 - Not sure where I will put the PDFs, currently they are just in the main folder 
 website. 
-- Figure out how to use Django to host the website. It'll work for 
 troubleshooting now.
 
 ## Things to remember
-- Remember when using Django, store all html templates in /templates.
+- I'm using nginx now, so no need to have the Django files. 
 
 ## Yeah
-5a326877587a513555546c55533074356556526a52576c5a565768515955354d646e6c76566a6c6e636a4a524e7a52495744687854513d3d
++a9H)aAv2ttK+w5>+vE$2&d;+&h}"&uG3'9F2K=(&t}w's#x&bxb5Hll
 
 ## Pics I Might Use.
 [Cool Pic for] (https://s3-media1.fl.yelpcdn.com/bphoto/bL_CuiZX9l8orGhoGZ5TGA/348s.jpg)
