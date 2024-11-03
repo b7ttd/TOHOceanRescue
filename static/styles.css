@@ -1,6 +1,23 @@
 * {
+	margin: 0;
+	padding: 0;
 	box-sizing: border-box;
 }
+
+.container {
+	position: relative;
+	height: 400px;
+	border: 2px solid #006100
+}
+
+.centered-element {
+	margin: 0;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
 title {
 	display: none;
 }
@@ -64,7 +81,7 @@ a.tabTitle, a.tabTitle:visited {
 }
 a.tabTitle:active, #Home a.tabHome, #Page1 a.tabPage1, #Page2 a.tabPage2  {
 	color: rgb(19,19,19) !important;
-	background-image: linear-gradient(to top, rgb(180, 180, 180), rgb(219,219,219));
+	background-image: linear-gradient(to top, rgb(100, 100, 100), rgb(219,219,219));
 	font-weight: bold;
 	text-decoration:none!important; 
 }
@@ -185,127 +202,13 @@ a.tabTitle:active, #Home a.tabHome, #Page1 a.tabPage1, #Page2 a.tabPage2  {
 #menuDropDown:checked ~ #myTabsDropDown{
 	display: block;
 
-}
-input.myPopUp{
-	display: none;
-}
-label.myPopUp{
-	text-decoration: underline;
-}
-input.myPopUp:checked + span{
-	display: inline;
-}
-input.myPopUp:not(:checked) + span{
-	display: none;
-}
-label.radioHideUnhide {
-	color: rgb(0,0,128);
-	font-weight: bold;
-}
-input[name="radioArticle1"] {
-	display: none;
-}
-input#showArticle1:checked ~ div#libraryArticle1{
+.center {
 	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
 }
-input#showArticle1:checked + label{
-	display: none;
+.image-container {
+	display: flex;
+	justify-content: center;
 }
-input#showArticle1:not(:checked) ~ div#libraryArticle1{
-	display: none;
-}
-input#showArticle1:not(:checked) + label{
-	display: block;
-}
-input[name="radioArticle2"] {
-
-	display: none;
-}
-input#showArticle2:checked ~ div#libraryArticle2{
-	display: block;
-}
-input#showArticle2:checked + label{
-	display: none;
-}
-input#showArticle2:not(:checked) ~ div#libraryArticle2{
-	display: none;
-}
-input#showArticle2:not(:checked) + label{
-	display: block;
-}
-input[name="radioArticle3"] {
-	display: none;
-}
-input#showArticle3:checked ~ div#libraryArticle3{
-	display: block;
-}
-input#showArticle3:checked + label{
-	display: none;
-}
-input#showArticle3:not(:checked) ~ div#libraryArticle3{
-	display: none;
-}
-input#showArticle3:not(:checked) + label{
-	display: block;
-}
-input[name="radioArticle4"] {
-	display: none;
-}
-input#showArticle4:checked ~ div#libraryArticle4{
-	display: block;
-}
-input#showArticle4:checked + label{
-	display: none;
-}
-input#showArticle4:not(:checked) ~ div#libraryArticle4{
-	display: none;
-}
-input#showArticle4:not(:checked) + label{
-	display: block;
-}
-input[name="radioArticle5"] {
-	display: none;
-}
-input#showArticle5:checked ~ div#libraryArticle5{
-	display: block;
-}
-input#showArticle5:checked + label{
-	display: none;
-}
-input#showArticle5:not(:checked) ~ div#libraryArticle5{
-	display: none;
-}
-input#showArticle5:not(:checked) + label{
-	display: block;
-}
-input[name="radioArticle6"] {
-	display: none;
-}
-input#showArticle6:checked ~ div#libraryArticle6{
-	display: block;
-}
-input#showArticle6:checked + label{
-	display: none;
-}
-input#showArticle6:not(:checked) ~ div#libraryArticle6{
-	display: none;
-}
-input#showArticle6:not(:checked) + label{
-	display: block;
-}
-input[name="radioArticle7"] {
-	display: none;
-}
-input#showArticle7:checked ~ div#libraryArticle7{
-	display: block;
-}
-input#showArticle7:checked + label{
-	display: none;
-}
-input#showArticle7:not(:checked) ~ div#libraryArticle7{
-	display: none;
-}
-input#showArticle7:not(:checked) + label{
-	display: block;
-}
-
