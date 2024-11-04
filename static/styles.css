@@ -7,15 +7,20 @@
 .container {
 	position: relative;
 	height: 400px;
-	border: 2px solid #006100
+	border: 2px solid #006100;
+	text-align: center;
 }
 
 .centered-element {
-	margin: 0;
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+}
+
+.caption {
+	display:block;
+	font-family: Lato!important;
 }
 
 title {

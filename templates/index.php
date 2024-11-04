@@ -7,7 +7,7 @@
   	<meta name="keywords" content="Lifeguards">
   	<meta name="author" content="b7ttd">
 	<meta name="viewport" content="width=device-width, initial-scale=1"> 
-	<link rel="stylesheet" type="text/css" href="/static/styles.css">
+	<link rel="stylesheet" type="text/css" href="static/styles.css">
 	<link rel="stylesheet" type="text/css" href="w3.css"> 
 </head>
 <body id='Home'>
@@ -28,10 +28,10 @@
 					<p><a href="/templates/page2.php" class="myLinkButton">Read more...</a></p>
 				</div>
 			</div>
+		<br>
 		</div><!--endOfPageContent-->
 		<?php include_once("myFooter.html"); ?>
 	</div><!--endOfPage-->
 </div><!--endOfPageWrapper-->
 </body>
 </html>
-
