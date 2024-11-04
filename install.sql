@@ -1,5 +1,5 @@
 -- Created originally by Tinyboard Development Group, may they rest in peace.
--- Contributions also from github.com/code-boxx
+-- Contributions also from https://github.com/code-boxx
 -- phpMyAdmin SQL Dump
 -- version 4.0.4.1
 -- http://www.phpmyadmin.net
@@ -38,8 +38,18 @@ INSERT INTO `users` VALUES
 (1, 'admin', 'cedad442efeef7112fed0f50b011b2b9bf83f6898082f995f69dd7865ca19fb7', '4a44c6c55df862ae901b413feecb0d49', 30);
 -- --------------------------------------------------------
 --
--- Table structure for table 'uploads'
+-- Table structure for table 'pdfs'
 -- 
+CREATE TABLE IF NOT EXISTS `pdfs` (
+  `staff` varchar(30) NOT NULL,
+  `time` int(10) unsigned NOT NULL, 
+  `category` char
+  `post` blob,
+  PRIMARY KEY (`category`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1 ;
+-- --------------------------------------------------------
+--
+--
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

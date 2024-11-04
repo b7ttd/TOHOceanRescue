@@ -18,18 +18,24 @@
 		<div class="myPageContent">
 			<div class="myRow">
 				<div class="myCol myLeft myBlueBox">
-					<h2>Town of Hempstead Ocean Rescue</h2>
-					The Town of Hempstead's Proudest.
+					<h2>Town of Hempstead's Beaches</h2>
+					Read on for the Town's greatest beaches.
 					<p><a href="/templates/page1.php" class="myLinkButton">Read more...</a></p>
 				</div>
 				<div class="myCol myRight myBlueBox">
-					<h2>Ligma Balls</h2>
-					You read the message, pal. Read it and weep.
+					<h2>Employment</h2>
+					Seeking work? We hire!
 					<p><a href="/templates/page2.php" class="myLinkButton">Read more...</a></p>
+				</div>
+				<div class="myCol myLeft myBlueBox">
+					<h2>PDFs</h2>
+					PDF Dump Below!
+					<p><a href="/templates/pdfs.php" class="myLinkButton">Read more...</a></p>
 				</div>
 			</div>
 		<br>
 		</div><!--endOfPageContent-->
+		<hr>
 		<?php include_once("myFooter.html"); ?>
 	</div><!--endOfPage-->
 </div><!--endOfPageWrapper-->

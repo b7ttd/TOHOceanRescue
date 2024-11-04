@@ -3,10 +3,9 @@
 	padding: 0;
 	box-sizing: border-box;
 }
-
 .container {
 	position: relative;
-	height: 400px;
+	height: 300px;
 	border: 2px solid #006100;
 	text-align: center;
 }
@@ -22,12 +21,12 @@
 	display:block;
 	font-family: Lato!important;
 }
-
-title {
-	display: none;
-}
 body {
 	font-family: Lato!important;
+	display: block;
+}
+dd {
+	margin-bottom: 2vh;
 	display: block;
 }
 h1 {
@@ -61,12 +60,12 @@ hr {
 p {
 	margin-bottom: 0;
 }
-dd {
-	margin-bottom: 2vh;
-	display: block;
-}
+
 img, iframe {
 	max-width: 100%;
+}
+title {
+	display: none;
 }
 ul {
 	max-width: 90vw;
@@ -98,6 +97,7 @@ a.tabTitle:active, #Home a.tabHome, #Page1 a.tabPage1, #Page2 a.tabPage2  {
 }
 .myPage{
 	max-width: 900px;
+	height: 800px;
 	min-height: 100vh;
 	background-color: rgb(255,255,255);
 	display: inline-block;

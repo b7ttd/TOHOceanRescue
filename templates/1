@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <title>TOH Ocean Rescue</title>
+        <link rel = "icon" href="../static/TownOfHempsteadLogo.ico" type = "images/x-icon">
+        <meta name="description" content="Ocean Rescue for Long Island, serving sine like, uh, a really long time..">
+        <meta name="keywords" content="Lifeguards">
+        <meta name="author" content="b7ttd">
+        <meta name="viewport" content="width=device-width, initial-scale=1"> 
+        <link rel="stylesheet" type="text/css" href="/static/styles.css">
+        <link rel="stylesheet" type="text/css" href="w3.css"> 
+</head>
+<div class="myPageWrapper">
+                <div class="myPage">
+                        <a name="scroll-top"></a>
+                        <?php include_once("myTabs.html"); ?>
+                <div class="myPageContent">
+<header>
+        <h1 style = "text-align:center" data-text="PDF Files"> PDF Files</h1>
+        <div class="subtitle"></div>
+</header>
+<body>
+	<table border='1' style="width:100%">
+		<tr>
+                	<th>Staff</th>
+                        <th>Time</th>
+                        <th>Category</th>
+                        <th>PDF Link</th>
+                </tr>
+                <tr>
+                        <td>System</td>
+                        <td>Noon</td>
+                        <td>Porn</td>
+                        <td><a href="/static/TOHWomenLifeguardTournament">View PDF</a></td>
+                </tr>
+        </table>
+        
+        
+</body>
+</html>
+

@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>A meaningful title (wont appear in the page content but will appear when sharing the page by WhatsApp etc)</title>
-	<link rel = "icon" href="icon.png" type = "image/x-icon">
-	<meta name="description" content="A meaningful descriptoin (wont appear in the page but will appear when sharing the page).">
+	<title>TOH Ocean Rescue</title>
+	<link rel = "icon" href="../static/images/TownOfHempsteadLogo.ico" type = "image/x-icon">
+	<meta name="description" content="Yes.">
   	<meta name="keywords" content="Keyword1,Keyword2,Choose,Appropriate,Keywords">
-  	<meta name="author" content="Your Name">
+  	<meta name="author" content="b7ttd">
 	<meta name="viewport" content="width=device-width, initial-scale=1"> 
-	<link rel="stylesheet" type="text/css" href="myStyle.css"><!--define your colours in myStyle.css-->
+	<link rel="stylesheet" type="text/css" href="../static/styles.css">
 	<link rel="stylesheet" type="text/css" href="w3.css"><!--w3.css is an external library-->
 </head>
 <body id='Page1'>
@@ -16,11 +16,17 @@
 		<a name="scroll-top"></a>
 		<?php include_once("myTabs.html"); ?>
 		<div class="myPageContent">
-			<h1>Page 1</h1>
-			<hr>
-			<div class="myBlueBox">
-				<center><img src="https://yourdomain/directory/img_pricing_code.png" alt="pricing models"></center>
-			</div>
+			<h1>Beaches of the Town</h1>
+			<p>
+				<br>
+				Some of Long Island's most beautiful South Shore beaches are located in the 
+				Town of Hempstead. Ocean beaches at Point Lookout, Lido, and Lido West are 
+				open from Memorial Day weekend through Labor Day. In addition to its four 
+				beaches along the Atlantic shoreline, the town also operates a bay beach 
+				at Hewlett Point Park in Bay Park and a small beachfront along Hog Island 
+				Channel in the community of Harbor Isle. <a href= 
+				http://www.lishore.org/jones/latest.php>A map of Town parks</a>
+			</p>
 			<hr>
 			<div class="myBlueBox">
 				<h2>Title 2</h2>

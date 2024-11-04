@@ -1,40 +1,43 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>A meaningful title (wont appear in the page content but will appear when sharing the page by WhatsApp etc)</title>
-	<link rel = "icon" href="icon.png" type = "image/x-icon">
-	<meta name="description" content="A meaningful descriptoin (wont appear in the page but will appear when sharing the page).">
+	<title>TOH Ocean Rescue</title>
+	<link rel = "icon" href="../static/images/TownOfHempsteadLogo.ico" type = "image/x-icon">
+	<meta name="description" content="yes">
   	<meta name="keywords" content="Keyword1,Keyword2,Choose,Appropriate,Keywords">
-  	<meta name="author" content="Your Name">
+  	<meta name="author" content="b7ttd">
 	<meta name="viewport" content="width=device-width, initial-scale=1"> 
-	<link rel="stylesheet" type="text/css" href="myStyle.css"><!--define your colours in myStyle.css-->
-	<link rel="stylesheet" type="text/css" href="w3.css"><!--w3.css is an external library-->
+	<link rel="stylesheet" type="text/css" href="../static/styles.css">	
+	<link rel="stylesheet" type="text/css" href="w3.css">
 </head>
 <body id='Page2'>
 <div class="myPageWrapper">
 	<div class="myPage">
 		<a name="scroll-top"></a>
 		<?php include_once("myTabs.html"); ?>
-		<div class="myPageContent">
-			<h1>Page 2</h1>
-			<hr>
-			<div class="myTextBox">
-				<h2>Title 1</h2>
-				ProMaSta is an acronym for Probability, Mathematics and Statistics. It reflects our interdisciplinary approach to problem solving.
-			</div>
-			<hr>
-			<div class="myTextBox">
-				<h2>Title 2</h2>
-				 We offer our clients distinct support in actuarial analytics in order to increase profitability, improve their risk management tools and allowing them to make informed business decisions.  
-			</div>
-			<hr>
-			<div class="myTextBox">
-				<h2>Title 3</h2>
-				Our clients are reinsurers, investment managers specializing in insurance investments and first insurers for optimizing their reinsurance.
-			</div>
+		<h1>Employement</h1>
+		<div class="myTextBox">
+			<h2>Questions?</h2>
+			The Aquatic Division will offer a unique screening
+			process program for certified and non-certified 
+			persons, 15 years of age and over, interested in 
+			working as lifeguards. The screening program will 
+			evaluate candidates in a 200-yard swim and interview 
+			those who wish to apply for a job with the Town of 
+			Hempstead. Employment is not guaranteed. Please call 
+			the Aquatics office for further information on summer 
+			employment as a Town of Hempstead Lifeguard at 
+			516-292-9000, ext. 7237.	
 		</div>
-		<?php include_once("myFooter.html"); ?>
+		<div class="myTextBox">
+			<h2>Who to Talk To</h2>
+			Justine Anderson
+			Email: <a href="justand@hempsteadny.gov">Justine Anderson</a>
+			Phone: 516-292-9000, ext. 7239
+		</div>
+	<?php include_once("myFooter.html"); ?>
 	</div>
+	
 </div>
 </body>
 </html>
