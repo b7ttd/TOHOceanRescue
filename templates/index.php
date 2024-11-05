@@ -12,9 +12,9 @@
 </head>
 <body id='Home'>
 <div class="myPageWrapper">
-	<div class="myPage">
-		<a name="scroll-top"></a>
+		<div class="myPage">
 		<?php include_once("myTabs.html"); ?>
+		<!--Begin index content-->
 		<div class="myPageContent">
 			<div class="myRow">
 				<div class="myCol myLeft myBlueBox">
@@ -37,7 +37,7 @@
 		</div><!--endOfPageContent-->
 		<hr>
 		<?php include_once("myFooter.html"); ?>
-	</div><!--endOfPage-->
+	</div> <!--endOfPage-->
 </div><!--endOfPageWrapper-->
 </body>
 </html>

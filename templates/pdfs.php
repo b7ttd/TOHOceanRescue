@@ -8,7 +8,6 @@
         <meta name="author" content="b7ttd">
         <meta name="viewport" content="width=device-width, initial-scale=1"> 
         <link rel="stylesheet" type="text/css" href="../static/styles.css">
-        <link rel="stylesheet" type="text/css" href="w3.css"> 
 </head>
 <div class="myPageWrapper">
                 <div class="myPage">
@@ -70,9 +69,22 @@
                         <td>Direct Deposit Form</td>
                         <td><a href="/static/DirectDepositForm.pdf">Direct Deposit Form</a></td>
 		</tr>
-
+		<tr>
+			<td>b7ttd</td>
+                        <td>Lost</td>
+                        <td>Lifeguard Qualifications</td>
+			<td><a href="https://www.nassaucountyny.gov/DocumentCenter/View/45274/Application-for-Approval-of-Lifeguard-Qualifications?bidId=">
+			Lifeguard Qualifications</a></td>
+		</tr>
+		<tr>
+			<td>b7ttd</td>
+                        <td>Lost</td>
+                        <td>Lifeguard Qualifications</td>
+			<td><a href="https://cdn.ymaws.com/www.usla.org/resource/resmgr/guidelines/USLA_Guideline_001_Certifica.pdf">
+			Open Water Lifeguard Agency Certification</a></td>
+		</tr>
         </table>
-        
+<?php include_once("myFooter.html"); ?>  
         
 </body>
 </html>
