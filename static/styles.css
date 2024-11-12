@@ -26,10 +26,9 @@
 }
 .right-element {
 	height: 10;
-	width: 45;style="right:100px; top:40px;"
+	width: 45;style="right:100px; top:40px";
 	padding: 1px;
 	text-align: left;
-	border: 2px solid #006100;
 }
 
 .caption {
@@ -49,6 +48,7 @@ h1 {
 	font-family: Recoleta!important;
 	color: rgb(69,69,69);
 	font-weight: bold;
+	text-align: center;
 }
 h2 {
 	font-size: 1.2em !important;
@@ -98,7 +98,7 @@ a.tabTitle, a.tabTitle:visited {
 	color: rgb(0,0,0);
 	text-decoration:none!important;
 }
-a.tabTitle:active, #Home a.tabHome, #Page1 a.tabPage1, #Page2 a.tabPage2  {
+a.tabTitle:active, #Home a.tabHome, #Page1 a.tabPage1, #Page2 a.tabPage2, #PDFs a.tabPDFs, #Reports a.tabReports, #Login a.tabLogin  {
 	color: rgb(19,19,19) !important;
 	background-image: linear-gradient(to top, rgb(100, 100, 100), rgb(219,219,219));
 	font-weight: bold;
@@ -106,14 +106,14 @@ a.tabTitle:active, #Home a.tabHome, #Page1 a.tabPage1, #Page2 a.tabPage2  {
 }
 .myPageWrapper{
 	background-color: rgb(153,153,153);
-	#background-image: linear-gradient(to bottom, rgb(153, 153, 153), rgb(180,180,180));
+	background-image: linear-gradient(to bottom, rgb(153, 153, 153), rgb(180,180,180));
 	width: 100vw;	
 	text-align: center;
 }
 .myPage{
 	max-width: 400px;
 	height: 200px;
-	min-height: 120vh;
+	min-height: 200vh;
 	background-color: rgb(255,255,255);
 	display: inline-block;
 	text-align: left;
@@ -129,7 +129,7 @@ a.tabTitle:active, #Home a.tabHome, #Page1 a.tabPage1, #Page2 a.tabPage2  {
 	font-size: 1.1em;
 }
 #Page1 div.myPageContent, #Page2 div.myPageContent {
-	#background-image: linear-gradient(to bottom, rgb(255,255,255), rgba(0,0,128,0.08), rgba(0,0,128,0.10), rgba(0,0,128,0.08), rgb(255,255,255));
+	background-image: linear-gradient(to bottom, rgb(255,255,255), rgba(0,0,128,0.08), rgba(0,0,128,0.10), rgba(0,0,128,0.08), rgb(255,255,255));
 	background: rgba(0,0,128,0.03);
 }
 .myHighlight{
@@ -142,8 +142,8 @@ a.tabTitle:active, #Home a.tabHome, #Page1 a.tabPage1, #Page2 a.tabPage2  {
 }
 .myTextBox{
 	background-color: rgb(255,255,255);
-	#background-color: rgba(0,0,128,0.1);
-	#background-image: linear-gradient(to top, rgba(0,0,128,0.05), rgba(0,0,128,0.01));
+	background-color: rgba(0,0,128,0.1);
+	background-image: linear-gradient(to top, rgba(0,0,128,0.05), rgba(0,0,128,0.01));
 	padding: 5px 10px 20px 15px !important;
 	max-width: 100%;
 	border: 1px solid rgb(200,200,200);
@@ -162,6 +162,15 @@ a.tabTitle:active, #Home a.tabHome, #Page1 a.tabPage1, #Page2 a.tabPage2  {
 	margin-bottom: 20px;
 }
 .myBlueBox{
+	background-image: linear-gradient(to top, rgba(0,0,128,0.1), rgba(0,0,128,0.0));
+	padding: 10px 10px 10px 10px !important;
+	max-width: 100%;
+	border: 1px solid rgb(200,200,200);
+	border-radius: 13px;
+	margin-top: 20px;
+	color: rgb(55,55,55);
+}
+.myBigBlueBox{
 	background-image: linear-gradient(to top, rgba(0,0,128,0.1), rgba(0,0,128,0.0));
 	padding: 10px 10px 10px 10px !important;
 	max-width: 100%;

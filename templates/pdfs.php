@@ -10,7 +10,7 @@
         <link rel="stylesheet" type="text/css" href="../static/styles.css">
 </head>
 <div class="myPageWrapper">
-                <div class="myPage">
+                <div style="min-height:160vh;" class="myPage">
                         <a name="scroll-top"></a>
                         <?php include_once("myTabs.html"); ?>
                 <div class="myPageContent">

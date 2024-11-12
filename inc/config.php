@@ -1,28 +1,12 @@
 <?php
 
 /*
- *  Copyright (c) 2010-2013 Tinyboard Development Group
- *  
- *  WARNING: This is a project-wide configuration file and is overwritten when upgrading to a newer
- *  version of Tinyboard. Please leave this file unchanged, or it will be a lot harder for you to upgrade.
- *  If you would like to make instance-specific changes to your own setup, please use instance-config.php.
- *
- *  This is the default configuration. You can copy values from here and use them in
- *  your instance-config.php
- *
- *  You can also create per-board configuration files. Once a board is created, locate its directory and
- *  create a new file named config.php (eg. b/config.php). Like instance-config.php, you can copy values
- *  from here and use them in your per-board configuration files.
- *
- *  Some directives are commented out. This is either because they are optional and examples, or because
- *  they are "optionally configurable", and given their default values by Tinyboard's code later if unset.
- *
- *  More information: http://tinyboard.org/docs/?p=Config
- *
- *  Tinyboard documentation: http://tinyboard.org/docs/
- *
+ *  Instance Configuration
+ *  ----------------------
+ *  File I'm using to hold a shitton of variables and such.
+ *  You can copy values from config.php (defaults) and paste them here.
+ *  All credits ofcourse to Zank and the boys.
  */
-
 
 /*
  * =======================
@@ -36,7 +20,7 @@
 	$config['blotter'] = &$config['global_message'];
 
 	// Automatically check if a newer version of Tinyboard is available when an administrator logs in.
-	$config['check_updates'] = true;
+	$config['check_updates'] = false; // shit is no longer maintained :(
 	// How often to check for updates
 	$config['check_updates_time'] = 43200; // 12 hours
 
@@ -75,16 +59,19 @@
  *  Database settings
  * ====================
  */
-
+	$config['dbpath'] = 'i_didint_edit_the_config';
+	$config['lgdatapath'] = 'i_didint_edit_the_config';
+	$Config['staticpath'] = 'i_didint_edit_the_config';
+/* Fair warning, all this shit below is for SQL.	
 	// Database driver (http://www.php.net/manual/en/pdo.drivers.php)
 	// Only MySQL is supported by Tinyboard at the moment, sorry.
-	$config['db']['type'] = 'mysql';
+	$config['db']['type'] = 'mariadb';
 	// Hostname, IP address or Unix socket (prefixed with ":")
 	$config['db']['server'] = 'localhost';
 	// Example: Unix socket
 	// $config['db']['server'] = ':/tmp/mysql.sock';
 	// Login
-	$config['db']['user'] = '';
+	$config['db']['user'] = 'root';
 	$config['db']['password'] = '';
 	// Tinyboard database
 	$config['db']['database'] = '';
@@ -96,6 +83,8 @@
 	$config['db']['dsn'] = '';
 	// Connection timeout duration in seconds
 	$config['db']['timeout'] = 30;
+ */
+	
 
 /*
  * ====================
@@ -147,7 +136,7 @@
 
 	// Cookies path. Defaults to $config['root']. If $config['root'] is a URL, you need to set this. Should
 	// be '/' or '/board/', depending on your installation.
-	// $config['cookies']['path'] = '/';
+	$config['cookies']['path'] = '/';
 	// Where to set the 'path' parameter to $config['cookies']['path'] when creating cookies. Recommended.
 	$config['cookies']['jail'] = true;
 
@@ -156,427 +145,10 @@
 	$config['cookies']['expire'] = 60 * 60 * 24 * 30 * 6; // ~6 months
 
 	// Make this something long and random for security.
-	$config['cookies']['salt'] = 'abcdefghijklmnopqrstuvwxyz09123456789!@#$%^&*()';
+	$config['cookies']['salt'] = 'abcdefghijklmnopqrstuvwxyz012345789';
 
 	// Whether or not you can access the mod cookie in JavaScript. Most users should not need to change this.
 	$config['cookies']['httponly'] = true;
-
-	// Used to salt secure tripcodes ("##trip") and poster IDs (if enabled).
-	$config['secure_trip_salt'] = ')(*&^%$#@!98765432190zyxwvutsrqponmlkjihgfedcba';
-
-/*
- * ====================
- *  Flood/spam settings
- * ====================
- */
-
-	/*
-	 * To further prevent spam and abuse, you can use DNS blacklists (DNSBL). A DNSBL is a list of IP
-	 * addresses published through the Internet Domain Name Service (DNS) either as a zone file that can be
-	 * used by DNS server software, or as a live DNS zone that can be queried in real-time.
-	 *
-	 * Read more: http://tinyboard.org/docs/?p=Config/DNSBL
-	 */
-
-	// Prevents most Tor exit nodes from making posts. Recommended, as a lot of abuse comes from Tor because
-	// of the strong anonymity associated with it.
-	$config['dnsbl'][] = array('tor.dnsbl.sectoor.de', 1);
-
-	// http://www.sorbs.net/using.shtml
-	// $config['dnsbl'][] = array('dnsbl.sorbs.net', array(2, 3, 4, 5, 6, 7, 8, 9));
-
-	// http://www.projecthoneypot.org/httpbl.php
-	// $config['dnsbl'][] = array('<your access key>.%.dnsbl.httpbl.org', function($ip) {
-	//	$octets = explode('.', $ip);
-	//	
-	//	// days since last activity
-	//	if ($octets[1] > 14)
-	//		return false;
-	//	
-	//	// "threat score" (http://www.projecthoneypot.org/threat_info.php)
-	//	if ($octets[2] < 5)
-	//		return false;
-	//	
-	//	return true;
-	// }, 'dnsbl.httpbl.org'); // hide our access key
-
-	// Skip checking certain IP addresses against blacklists (for troubleshooting or whatever)
-	$config['dnsbl_exceptions'][] = '127.0.0.1';
-
-	/*
-	 * Introduction to Tinyboard's spam filter:
-	 *
-	 * In simple terms, whenever a posting form on a page is generated (which happens whenever a
-	 * post is made), Tinyboard will add a random amount of hidden, obscure fields to it to
-	 * confuse bots and upset hackers. These fields and their respective obscure values are
-	 * validated upon posting with a 160-bit "hash". That hash can only be used as many times
-	 * as you specify; otherwise, flooding bots could just keep reusing the same hash.
-	 * Once a new set of inputs (and the hash) are generated, old hashes for the same thread
-	 * and board are set to expire. Because you have to reload the page to get the new set
-	 * of inputs and hash, if they expire too quickly and more than one person is viewing the
-	 * page at a given time, Tinyboard would return false positives (depending on how long the
-	 * user sits on the page before posting). If your imageboard is quite fast/popular, set
-	 * $config['spam']['hidden_inputs_max_pass'] and $config['spam']['hidden_inputs_expire'] to
-	 * something higher to avoid false positives.
-	 *
-	 * See also: http://tinyboard.org/docs/?p=Your_request_looks_automated
-	 *
-	 */
-
-	// Number of hidden fields to generate.
-	$config['spam']['hidden_inputs_min'] = 4;
-	$config['spam']['hidden_inputs_max'] = 12;
-
-	// How many times can a "hash" be used to post?
-	$config['spam']['hidden_inputs_max_pass'] = 12;
-
-	// How soon after regeneration do hashes expire (in seconds)?
-	$config['spam']['hidden_inputs_expire'] = 60 * 60 * 3; // three hours
-	
-	// Whether to use Unicode characters in hidden input names and values.
-	$config['spam']['unicode'] = true;
-
-	// These are fields used to confuse the bots. Make sure they aren't actually used by Tinyboard, or it won't work.
-	$config['spam']['hidden_input_names'] = array(
-		'user',
-		'username',
-		'login',
-		'search',
-		'q',
-		'url',
-		'firstname',
-		'lastname',
-		'text',
-		'message'
-	);
-
-	// Always update this when adding new valid fields to the post form, or EVERYTHING WILL BE DETECTED AS SPAM!
-	$config['spam']['valid_inputs'] = array(
-		'hash',
-		'board',
-		'thread',
-		'mod',
-		'name',
-		'email',
-		'subject',
-		'post',
-		'body',
-		'password',
-		'sticky',
-		'lock',
-		'raw',
-		'embed',
-		'recaptcha_challenge_field',
-		'recaptcha_response_field',
-		'spoiler',
-		'quick-reply',
-		'page',
-		'file_url',
-		'json_response',
-	);
-
-	// Enable reCaptcha to make spam even harder. Rarely necessary.
-	$config['recaptcha'] = false;
-
-	// Public and private key pair from https://www.google.com/recaptcha/admin/create
-	$config['recaptcha_public'] = '6LcXTcUSAAAAAKBxyFWIt2SO8jwx4W7wcSMRoN3f';
-	$config['recaptcha_private'] = '6LcXTcUSAAAAAOGVbVdhmEM1_SyRF4xTKe8jbzf_';
-
-	/*
-	 * Custom filters detect certain posts and reject/ban accordingly. They are made up of a condition and an
-	 * action (for when ALL conditions are met). As every single post has to be put through each filter,
-	 * having hundreds probably isn't ideal as it could slow things down.
-	 *
-	 * By default, the custom filters array is populated with basic flood prevention conditions. This
-	 * includes forcing users to wait at least 5 seconds between posts. To disable (or amend) these flood
-	 * prevention settings, you will need to empty the $config['filters'] array first. You can do so by
-	 * adding "$config['filters'] = array();" to inc/instance-config.php. Basic flood prevention used to be
-	 * controlled solely by config variables such as $config['flood_time'] and $config['flood_time_ip'], and
-	 * it still is, as long as you leave the relevant $config['filters'] intact. These old config variables
-	 * still exist for backwards-compatability and general convenience.
-	 *
-	 * Read more: http://tinyboard.org/docs/index.php?p=Config/Filters
-	 */
-
-	// Minimum time between between each post by the same IP address.
-	$config['flood_time'] = 10;
-	// Minimum time between between each post with the exact same content AND same IP address.
-	$config['flood_time_ip'] = 120;
-	// Same as above but by a different IP address. (Same content, not necessarily same IP address.)
-	$config['flood_time_same'] = 30;
-
-	// Minimum time between posts by the same IP address (all boards).
-	$config['filters'][] = array(
-		'condition' => array(
-			'flood-match' => array('ip'), // Only match IP address
-			'flood-time' => &$config['flood_time']
-		),
-		'action' => 'reject',
-		'message' => &$config['error']['flood']
-	);
-
-	// Minimum time between posts by the same IP address with the same text.
-	$config['filters'][] = array(
-		'condition' => array(
-			'flood-match' => array('ip', 'body'), // Match IP address and post body
-			'flood-time' => &$config['flood_time_ip'],
-			'!body' => '/^$/', // Post body is NOT empty
-		),
-		'action' => 'reject',
-		'message' => &$config['error']['flood']
-	);
-
-	// Minimum time between posts with the same text. (Same content, but not always the same IP address.)
-	$config['filters'][] = array(
-		'condition' => array(
-			'flood-match' => array('body'), // Match only post body
-			'flood-time' => &$config['flood_time_same']
-		),
-		'action' => 'reject',
-		'message' => &$config['error']['flood']
-	);
-
-	// Example: Minimum time between posts with the same file hash.
-	// $config['filters'][] = array(
-	// 	'condition' => array(
-	// 		'flood-match' => array('file'), // Match file hash
-	// 		'flood-time' => 60 * 2 // 2 minutes minimum
-	// 	),
-	// 	'action' => 'reject',
-	// 	'message' => &$config['error']['flood']
-	// );
-
-	// Example: Use the "flood-count" condition to only match if the user has made at least two posts with
-	// the same content and IP address in the past 2 minutes.
-	// $config['filters'][] = array(
-	// 	'condition' => array(
-	// 		'flood-match' => array('ip', 'body'), // Match IP address and post body
-	// 		'flood-time' => 60 * 2, // 2 minutes
-	// 		'flood-count' => 2 // At least two recent posts
-	// 	),
-	// 	'!body' => '/^$/',
-	// 	'action' => 'reject',
-	// 	'message' => &$config['error']['flood']
-	// );
-
-	// Example: Blocking an imaginary known spammer, who keeps posting a reply with the name "surgeon",
-	// ending his posts with "regards, the surgeon" or similar.
-	// $config['filters'][] = array(
-	// 	'condition' => array(
-	// 		'name' => '/^surgeon$/',
-	// 		'body' => '/regards,\s+(the )?surgeon$/i',
-	// 		'OP' => false
-	// 	),
-	// 	'action' => 'reject',
-	// 	'message' => 'Go away, spammer.'
-	// );
-
-	// Example: Same as above, but issuing a 3-hour ban instead of just reject the post.
-	// $config['filters'][] = array(
-	// 	'condition' => array(
-	// 		'name' => '/^surgeon$/',
-	// 		'body' => '/regards,\s+(the )?surgeon$/i',
-	// 		'OP' => false
-	// 	),
-	// 	'action' => 'ban',
-	// 	'expires' => 60 * 60 * 3, // 3 hours
-	// 	'reason' => 'Go away, spammer.'
-	// );
-
-	// Example: PHP 5.3+ (anonymous functions)
-	// There is also a "custom" condition, making the possibilities of this feature pretty much endless.
-	// This is a bad example, because there is already a "name" condition built-in.
-	// $config['filters'][] = array(
-	// 	'condition' => array(
-	// 		'body' => '/h$/i',
-	// 		'OP' => false,
-	// 		'custom' => function($post) {
-	// 			if($post['name'] == 'Anonymous')
-	// 				return true;
-	// 			else
-	// 				return false;
-	// 		}
-	// 	),
-	// 	'action' => 'reject'
-	// );
-	
-	// Filter flood prevention conditions ("flood-match") depend on a table which contains a cache of recent
-	// posts across all boards. This table is automatically purged of older posts, determining the maximum
-	// "age" by looking at each filter. However, when determining the maximum age, Tinyboard does not look
-	// outside the current board. This means that if you have a special flood condition for a specific board
-	// (contained in a board configuration file) which has a flood-time greater than any of those in the
-	// global configuration, you need to set the following variable to the maximum flood-time condition value.
-	// $config['flood_cache'] = 60 * 60 * 24; // 24 hours
-
-/*
- * ====================
- *  Post settings
- * ====================
- */
-
-	// Do you need a body for your reply posts?
-	$config['force_body'] = false;
-	// Do you need a body for new threads?
-	$config['force_body_op'] = true;
-	// Require an image for threads?
-	$config['force_image_op'] = true;
-
-	// Strip superfluous new lines at the end of a post.
-	$config['strip_superfluous_returns'] = true;
-	// Strip combining characters from Unicode strings (eg. "Zalgo").
-	$config['strip_combining_chars'] = true;
-
-	// Maximum post body length.
-	$config['max_body'] = 1800;
-	// Maximum number of post body lines to show on the index page.
-	$config['body_truncate'] = 15;
-	// Maximum number of characters to show on the index page.
-	$config['body_truncate_char'] = 2500;
-
-	// Typically spambots try to post many links. Refuse a post with X links?
-	$config['max_links'] = 20;
-	// Maximum number of cites per post (prevents abuse, as more citations mean more database queries).
-	$config['max_cites'] = 45;
-	// Maximum number of cross-board links/citations per post.
-	$config['max_cross'] = $config['max_cites'];
-
-	// Track post citations (>>XX). Rebuilds posts after a cited post is deleted, removing broken links.
-	// Puts a little more load on the database.
-	$config['track_cites'] = true;
-
-	// Maximum filename length (will be truncated).
-	$config['max_filename_len'] = 255;
-	// Maximum filename length to display (the rest can be viewed upon mouseover).
-	$config['max_filename_display'] = 30;
-
-	// How long after posting should you have to wait before being able to delete that post? (In seconds.)
-	$config['delete_time'] = 10;
-	// Reply limit (stops bumping thread when this is reached).
-	$config['reply_limit'] = 250;
-
-	// Image hard limit (stops allowing new image replies when this is reached if not zero).
-	$config['image_hard_limit'] = 0;
-	// Reply hard limit (stops allowing new replies when this is reached if not zero).
-	$config['reply_hard_limit'] = 0;
-
-
-	$config['robot_enable'] = false;
-	// Strip repeating characters when making hashes.
-	$config['robot_strip_repeating'] = true;
-	// Enabled mutes? Tinyboard uses ROBOT9000's original 2^x implementation where x is the number of times
-	// you have been muted in the past.
-	$config['robot_mute'] = true;
-	// How long before Tinyboard forgets about a mute?
-	$config['robot_mute_hour'] = 336; // 2 weeks
-	// If you want to alter the algorithm a bit. Default value is 2.
-	$config['robot_mute_multiplier'] = 2; // (n^x where x is the number of previous mutes)
-	$config['robot_mute_descritpion'] = _('You have been muted for unoriginal content.');
-
-	// Automatically convert things like "..." to Unicode characters ("…").
-	$config['auto_unicode'] = true;
-	// Whether to turn URLs into functional links.
-	$config['markup_urls'] = true;
-	// Optional URL prefix for links (eg. "http://anonym.to/?").
-	$config['link_prefix'] = ''; 
-	
-	// Allow "uploading" images via URL as well. Users can enter the URL of the image and then Tinyboard will
-	// download it. Not usually recommended.
-	$config['allow_upload_by_url'] = false;
-	// The timeout for the above, in seconds.
-	$config['upload_by_url_timeout'] = 15;
-
-	// A wordfilter (sometimes referred to as just a "filter" or "censor") automatically scans users’ posts
-	// as they are submitted and changes or censors particular words or phrases.
-
-	// For a normal string replacement:
-	// $config['wordfilters'][] = array('cat', 'dog');	
-	// Advanced raplcement (regular expressions):
-	// $config['wordfilters'][] = array('/ca[rt]/', 'dog', true); // 'true' means it's a regular expression
-
-	// Always act as if the user had typed "noko" into the email field.
-	$config['always_noko'] = false;
-
-	// Example: Custom tripcodes. The below example makes a tripcode of "#test123" evaluate to "!HelloWorld".
-	// $config['custom_tripcode']['#test123'] = '!HelloWorld';
-	// Example: Custom secure tripcode.
-	// $config['custom_tripcode']['##securetrip'] = '!!somethingelse';
-
-	// Allow users to mark their image as a "spoiler" when posting. The thumbnail will be replaced with a
-	// static spoiler image instead (see $config['spoiler_image']).
-	$config['spoiler_images'] = false;
-
-	// With the following, you can disable certain superfluous fields or enable "forced anonymous".
-
-	// When true, all names will be set to $config['anonymous'].
-	$config['field_disable_name'] = false;
-	// When true, there will be no email field.
-	$config['field_disable_email'] = false;
-	// When true, there will be no subject field.
-	$config['field_disable_subject'] = false;
-	// When true, there will be no subject field for replies.
-	$config['field_disable_reply_subject'] = false;
-	// When true, a blank password will be used for files (not usable for deletion).
-	$config['field_disable_password'] = false;
-
-	// Attach country flags to posts. Requires the PHP "geoip" extension to be installed:
-	// http://www.php.net/manual/en/intro.geoip.php. In the future, maybe I will find and include a proper
-	// pure-PHP geolocation library.
-	$config['country_flags'] = false;
-
-/*
-* ====================
-*  Ban settings
-* ====================
-*/
-
-	// Require users to see the ban page at least once for a ban even if it has since expired.
-	$config['require_ban_view'] = true;
-
-	// Show the post the user was banned for on the "You are banned" page.
-	$config['ban_show_post'] = false;
-
-	// Optional HTML to append to "You are banned" pages. For example, you could include instructions and/or
-	// a link to an email address or IRC chat room to appeal the ban.
-	$config['ban_page_extra'] = '';
-
-	// Allow users to appeal bans through Tinyboard.
-	$config['ban_appeals'] = false;
-
-	// Do not allow users to appeal bans that are shorter than this length (in seconds).
-	$config['ban_appeals_min_length'] = 60 * 60 * 6; // 6 hours
-
-	// How many ban appeals can be made for a single ban?
-	$config['ban_appeals_max'] = 1;
-
-/*
- * ====================
- *  Markup settings
- * ====================
- */
-
-	// "Wiki" markup syntax ($config['wiki_markup'] in pervious versions):
-	$config['markup'][] = array("/'''(.+?)'''/", "<strong>\$1</strong>");
-	$config['markup'][] = array("/''(.+?)''/", "<em>\$1</em>");
-	$config['markup'][] = array("/\*\*(.+?)\*\*/", "<span class=\"spoiler\">\$1</span>");
-	// $config['markup'][] = array("/^[ |\t]*==(.+?)==[ |\t]*$/m", "<span class=\"heading\">\$1</span>");
-
-	// Highlight PHP code wrapped in <code> tags (PHP 5.3+)
-	// $config['markup'][] = array(
-	// 	'/^&lt;code&gt;(.+)&lt;\/code&gt;/ms',
-	// 	function($matches) {
-	// 		return highlight_string(html_entity_decode($matches[1]), true);
-	// 	}
-	// );
-
-	// Repair markup with HTML Tidy. This may be slower, but it solves nesting mistakes. Tinyboad, at the
-	// time of writing this, can not prevent out-of-order markup tags (eg. "**''test**'') without help from
-	// HTML Tidy.
-	$config['markup_repair_tidy'] = false;
-
-	// Always regenerate markup. This isn't recommended and should only be used for debugging; by default,
-	// Tinyboard only parses post markup when it needs to, and keeps post-markup HTML in the database. This
-	// will significantly impact performance when enabled.
-	$config['always_regenerate_markup'] = false;
 
 /*
  * ====================
@@ -629,7 +201,7 @@
 	$config['convert_args'] = '-size %dx%d %s -thumbnail %dx%d -auto-orient +profile "*" %s';
 
 	// Strip EXIF metadata from JPEG files.
-	$config['strip_exif'] = false;
+	$config['strip_exif'] = true;
 	// Use the command-line `exiftool` tool to strip EXIF metadata without decompressing/recompressing JPEGs.
 	// Ignored when $config['redraw_image'] is true. This is also used to adjust the Orientation tag when
 	//  $config['strip_exif'] is false and $config['convert_manual_orient'] is true.
@@ -710,34 +282,6 @@
 
 /*
  * ====================
- *  Board settings
- * ====================
- */
-
-	// Maximum amount of threads to display per page.
-	$config['threads_per_page'] = 10;
-	// Maximum number of pages. Content past the last page is automatically purged.
-	$config['max_pages'] = 10;
-	// Replies to show per thread on the board index page.
-	$config['threads_preview'] = 5;
-	// Same as above, but for stickied threads.
-	$config['threads_preview_sticky'] = 1;
-
-	// How to display the URI of boards. Usually '/%s/' (/b/, /mu/, etc). This doesn't change the URL. Find
-	//  $config['board_path'] if you wish to change the URL.
-	$config['board_abbreviation'] = '/%s/';
-
-	// The default name (ie. Anonymous).
-	$config['anonymous'] = 'Anonymous';
-
-	// Number of reports you can create at once.
-	$config['report_limit'] = 3;
-
-	// Allow unfiltered HTML in board subtitles. This is useful for placing icons and links.
-	$config['allow_subtitle_html'] = false;
-
-/*
- * ====================
  *  Display settings
  * ====================
  */
@@ -746,7 +290,7 @@
 	$config['locale'] = 'en'; // (en, ru_RU.UTF-8, fi_FI.UTF-8, pl_PL.UTF-8)
 
 	// Timezone to use for displaying dates/tiems.
-	$config['timezone'] = 'America/Los_Angeles';
+	$config['timezone'] = 'America/New_York';
 	// The format string passed to strftime() for displaying dates.
 	// http://www.php.net/manual/en/function.strftime.php
 	$config['post_date'] = '%m/%d/%y (%a) %H:%M:%S';
@@ -754,8 +298,8 @@
 	$config['ban_date'] = '%A %e %B, %Y';
 
 	// The names on the post buttons. (On most imageboards, these are both just "Post").
-	$config['button_newtopic'] = _('New Topic');
-	$config['button_reply'] = _('New Reply');
+	$config['button_newtopic'] = ('New Topic');
+	$config['button_reply'] = ('New Reply');
 
 	// Assign each poster in a thread a unique ID, shown by "ID: xxxxx" before the post number.
 	$config['poster_ids'] = false;
@@ -766,7 +310,7 @@
 	$config['thread_subject_in_title'] = false;
 
 	// Additional lines added to the footer of all pages.
-	$config['footer'][] = _('All trademarks, copyrights, comments, and images on this page are owned by and are the responsibility of their respective parties.');
+	$config['footer'][] = ('All trademarks, copyrights, comments, and images on this page are owned by and are the responsibility of their respective parties.');
 
 	// Characters used to generate a random password (with Javascript).
 	$config['genpassword_chars'] = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+';
@@ -936,60 +480,60 @@
  */
 
 	// Error messages
-	$config['error']['bot']			= _('You look like a bot.');
-	$config['error']['referer']		= _('Your browser sent an invalid or no HTTP referer.');
-	$config['error']['toolong']		= _('The %s field was too long.');
-	$config['error']['toolong_body']	= _('The body was too long.');
-	$config['error']['tooshort_body']	= _('The body was too short or empty.');
-	$config['error']['noimage']		= _('You must upload an image.');
-	$config['error']['nomove']		= _('The server failed to handle your upload.');
-	$config['error']['fileext']		= _('Unsupported image format.');
-	$config['error']['noboard']		= _('Invalid board!');
-	$config['error']['nonexistant']		= _('Thread specified does not exist.');
-	$config['error']['locked']		= _('Thread locked. You may not reply at this time.');
-	$config['error']['reply_hard_limit']	= _('Thread has reached its maximum reply limit.');
-	$config['error']['image_hard_limit']	= _('Thread has reached its maximum image limit.');
-	$config['error']['nopost']		= _('You didn\'t make a post.');
-	$config['error']['flood']		= _('Flood detected; Post discarded.');
-	$config['error']['spam']		= _('Your request looks automated; Post discarded.');
-	$config['error']['unoriginal']		= _('Unoriginal content!');
-	$config['error']['muted']		= _('Unoriginal content! You have been muted for %d seconds.');
-	$config['error']['youaremuted']		= _('You are muted! Expires in %d seconds.');
-	$config['error']['dnsbl']		= _('Your IP address is listed in %s.');
-	$config['error']['toomanylinks']	= _('Too many links; flood detected.');
-	$config['error']['toomanycites']	= _('Too many cites; post discarded.');
-	$config['error']['toomanycross']	= _('Too many cross-board links; post discarded.');
-	$config['error']['nodelete']		= _('You didn\'t select anything to delete.');
-	$config['error']['noreport']		= _('You didn\'t select anything to report.');
-	$config['error']['toomanyreports']	= _('You can\'t report that many posts at once.');
-	$config['error']['invalidpassword']	= _('Wrong password…');
-	$config['error']['invalidimg']		= _('Invalid image.');
-	$config['error']['unknownext']		= _('Unknown file extension.');
-	$config['error']['filesize']		= _('Maximum file size: %maxsz% bytes<br>Your file\'s size: %filesz% bytes');
-	$config['error']['maxsize']		= _('The file was too big.');
-	$config['error']['fileexists']		= _('That file <a href="%s">already exists</a>!');
-	$config['error']['fileexistsinthread']	= _('That file <a href="%s">already exists</a> in this thread!');
-	$config['error']['delete_too_soon']	= _('You\'ll have to wait another %s before deleting that.');
-	$config['error']['mime_exploit']	= _('MIME type detection XSS exploit (IE) detected; post discarded.');
-	$config['error']['invalid_embed']	= _('Couldn\'t make sense of the URL of the video you tried to embed.');
-	$config['error']['captcha']		= _('You seem to have mistyped the verification.');
+	$config['error']['bot']			= ('You look like a bot.');
+	$config['error']['referer']		= ('Your browser sent an invalid or no HTTP referer.');
+	$config['error']['toolong']		= ('The %s field was too long.');
+	$config['error']['toolong_body']	= ('The body was too long.');
+	$config['error']['tooshort_body']	= ('The body was too short or empty.');
+	$config['error']['noimage']		= ('You must upload an image.');
+	$config['error']['nomove']		= ('The server failed to handle your upload.');
+	$config['error']['fileext']		= ('Unsupported image format.');
+	$config['error']['noboard']		= ('Invalid board!');
+	$config['error']['nonexistant']		= ('Thread specified does not exist.');
+	$config['error']['locked']		= ('Thread locked. You may not reply at this time.');
+	$config['error']['reply_hard_limit']	= ('Thread has reached its maximum reply limit.');
+	$config['error']['image_hard_limit']	= ('Thread has reached its maximum image limit.');
+	$config['error']['nopost']		= ('You didn\'t make a post.');
+	$config['error']['flood']		= ('Flood detected; Post discarded.');
+	$config['error']['spam']		= ('Your request looks automated; Post discarded.');
+	$config['error']['unoriginal']		= ('Unoriginal content!');
+	$config['error']['muted']		= ('Unoriginal content! You have been muted for %d seconds.');
+	$config['error']['youaremuted']		= ('You are muted! Expires in %d seconds.');
+	$config['error']['dnsbl']		= ('Your IP address is listed in %s.');
+	$config['error']['toomanylinks']	= ('Too many links; flood detected.');
+	$config['error']['toomanycites']	= ('Too many cites; post discarded.');
+	$config['error']['toomanycross']	= ('Too many cross-board links; post discarded.');
+	$config['error']['nodelete']		= ('You didn\'t select anything to delete.');
+	$config['error']['noreport']		= ('You didn\'t select anything to report.');
+	$config['error']['toomanyreports']	= ('You can\'t report that many posts at once.');
+	$config['error']['invalidpassword']	= ('Wrong password…');
+	$config['error']['invalidimg']		= ('Invalid image.');
+	$config['error']['unknownext']		= ('Unknown file extension.');
+	$config['error']['filesize']		= ('Maximum file size: %maxsz% bytes<br>Your file\'s size: %filesz% bytes');
+	$config['error']['maxsize']		= ('The file was too big.');
+	$config['error']['fileexists']		= ('That file <a href="%s">already exists</a>!');
+	$config['error']['fileexistsinthread']	= ('That file <a href="%s">already exists</a> in this thread!');
+	$config['error']['delete_too_soon']	= ('You\'ll have to wait another %s before deleting that.');
+	$config['error']['mime_exploit']	= ('MIME type detection XSS exploit (IE) detected; post discarded.');
+	$config['error']['invalid_embed']	= ('Couldn\'t make sense of the URL of the video you tried to embed.');
+	$config['error']['captcha']		= ('You seem to have mistyped the verification.');
 
 	// Moderator errors
-	$config['error']['toomanyunban']	= _('You are only allowed to unban %s users at a time. You tried to unban %u users.');
-	$config['error']['invalid']		= _('Invalid username and/or password.');
-	$config['error']['notamod']		= _('You are not a mod…');
-	$config['error']['invalidafter']	= _('Invalid username and/or password. Your user may have been deleted or changed.');
-	$config['error']['malformed']		= _('Invalid/malformed cookies.');
-	$config['error']['missedafield']	= _('Your browser didn\'t submit an input when it should have.');
-	$config['error']['required']		= _('The %s field is required.');
-	$config['error']['invalidfield']	= _('The %s field was invalid.');
-	$config['error']['boardexists']		= _('There is already a %s board.');
-	$config['error']['noaccess']		= _('You don\'t have permission to do that.');
-	$config['error']['invalidpost']		= _('That post doesn\'t exist…');
-	$config['error']['404']			= _('Page not found.');
-	$config['error']['modexists']		= _('That mod <a href="?/users/%d">already exists</a>!');
-	$config['error']['invalidtheme']	= _('That theme doesn\'t exist!');
-	$config['error']['csrf']		= _('Invalid security token! Please go back and try again.');
+	$config['error']['toomanyunban']	= ('You are only allowed to unban %s users at a time. You tried to unban %u users.');
+	$config['error']['invalid']		= ('Invalid username and/or password.');
+	$config['error']['notamod']		= ('You are not a mod…');
+	$config['error']['invalidafter']	= ('Invalid username and/or password. Your user may have been deleted or changed.');
+	$config['error']['malformed']		= ('Invalid/malformed cookies.');
+	$config['error']['missedafield']	= ('Your browser didn\'t submit an input when it should have.');
+	$config['error']['required']		= ('The %s field is required.');
+	$config['error']['invalidfield']	= ('The %s field was invalid.');
+	$config['error']['boardexists']		= ('There is already a %s board.');
+	$config['error']['noaccess']		= ('You don\'t have permission to do that.');
+	$config['error']['invalidpost']		= ('That post doesn\'t exist…');
+	$config['error']['404']			= ('Page not found.');
+	$config['error']['modexists']		= ('That mod <a href="?/users/%d">already exists</a>!');
+	$config['error']['invalidtheme']	= ('That theme doesn\'t exist!');
+	$config['error']['csrf']		= ('Invalid security token! Please go back and try again.');
 
 /*
  * =========================
@@ -1019,12 +563,14 @@
 	$config['root_file'] = false;
 
 	// Location of files.
-	$config['file_index'] = 'index.html';
+	// Can be html or php.
+	$config['file_index'] = '/index.php';
 	$config['file_page'] = '%d.html';
 	$config['file_mod'] = 'mod.php';
+	// HAS to be php
 	$config['file_post'] = 'post.php';
 	$config['file_script'] = 'main.js';
-
+	
 	// Board directory, followed by a forward-slash (/).
 	$config['board_path'] = '%s/';
 	// Misc directories.
@@ -1067,18 +613,20 @@
 	
 	// EXPERIMENTAL: Try not to build pages when we shouldn't have to.
 	$config['try_smarter'] = true;
+	
 
 /*
  * ====================
  *  Mod settings
  * ====================
  */
-
+	$config['mod']['dashboard_path'] = '/templates/mod/dashboard.php';
 	// Limit how many bans can be removed via the ban list. Set to false (or zero) for no limit.
 	$config['mod']['unban_limit'] = false;
 
 	// Whether or not to lock moderator sessions to IP addresses. This makes cookie theft ineffective.
-	$config['mod']['lock_ip'] = true;
+	$config['mod']['lock_ip'] = false;
+	// website will be accsessed from all kinds of diff places
 
 	// The page that is first shown when a moderator logs in. Defaults to the dashboard (?/).
 	$config['mod']['default'] = '/';
@@ -1148,7 +696,7 @@
 	$config['mod']['check_ban_message'] = false;
 	// Default public ban message. In public ban messages, %length% is replaced with "for x days" or
 	// "permanently" (with %LENGTH% being the uppercase equivalent).
-	$config['mod']['default_ban_message'] = _('USER WAS BANNED FOR THIS POST');
+	$config['mod']['default_ban_message'] = ('USER WAS BANNED FOR THIS POST');
 	// $config['mod']['default_ban_message'] = 'USER WAS BANNED %LENGTH% FOR THIS POST';
 	// HTML to append to post bodies for public bans messages (where "%s" is the message).
 	$config['mod']['ban_message'] = '<span class="public_ban">(%s)</span>';
@@ -1182,20 +730,21 @@
  *  Mod permissions
  * ====================
  */
-
+/*
 	// Probably best not to change this unless you are smart enough to figure out what you're doing. If you
 	// decide to change it, remember that it is impossible to redefinite/overwrite groups; you may only add
 	// new ones.
 	$config['mod']['groups'] = array(
-		10	=> 'Janitor',
-		20	=> 'Mod',
-		30	=> 'Admin',
+		10	=> 'Lifeguard',
+		20	=> 'Senior Guard',
+		30	=> 'Lieutenant',
+		40	=> 'Captain',
 		// 98	=> 'God',
 		99	=> 'Disabled'
 	);
 
 	// If you add stuff to the above, you'll need to call this function immediately after.
-	define_groups();
+	//define_groups();
 
 	// Example: Adding a new permissions group.
 	// $config['mod']['groups'][0] = 'NearlyPowerless';
@@ -1218,7 +767,7 @@
 	// Don't worry about per-board moderators. Let all mods moderate any board.
 	$config['mod']['skip_per_board'] = false;
 
-	/* Post Controls */
+	// Post Controls 
 	// View IP addresses
 	$config['mod']['show_ip'] = MOD;
 	// Delete a post
@@ -1261,7 +810,7 @@
 	// Raw HTML posting
 	$config['mod']['rawhtml'] = ADMIN;
 
-	/* Administration */
+	// ! Administration !
 	// View the report queue
 	$config['mod']['reports'] = JANITOR;
 	// Dismiss an abuse report
@@ -1380,6 +929,7 @@
 	// $config['mod']['config'][ADMIN] = array(
 	// 	'db',
 	// );
+*/
 
 /*
  * ====================
@@ -1464,4 +1014,4 @@
 	// Regex for board URIs. Don't add "`" character or any Unicode that MySQL can't handle. 58 characters
 	// is the absolute maximum, because MySQL cannot handle table names greater than 64 characters.
 	$config['board_regex'] = '[0-9a-zA-Z$_\x{0080}-\x{FFFF}]{1,58}';
-
+?>

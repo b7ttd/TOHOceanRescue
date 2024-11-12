@@ -1,10 +1,9 @@
 <?php
-
+// Good for connecting to this over ssh
 /*
  *  Copyright (c) 2010-2013 Tinyboard Development Group
  */
 
-defined('TINYBOARD') or exit;
 
 class Remote {
 	public function __construct($config) {

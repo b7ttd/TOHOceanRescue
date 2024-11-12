@@ -4,8 +4,6 @@
  *  Copyright (c) 2010-2013 Tinyboard Development Group
  */
 
-defined('TINYBOARD') or exit;
-
 class Cache {
 	private static $cache;
 	public static function init() {

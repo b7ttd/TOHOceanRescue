@@ -12,7 +12,7 @@
 </head>
 <body id='Page1'>
 <div class="myPageWrapper">
-	<div class="myPage">
+	<div class="myPage" style="min-height:140vh;">
 		<a name="scroll-top"></a>
 		<?php include_once("myTabs.html"); ?>
 		<div class="myPageContent">
@@ -27,23 +27,8 @@
 				Channel in the community of Harbor Isle. <a href= 
 				http://www.lishore.org/jones/latest.php>A map of Town parks</a>
 			</p>
-			<hr>
-			<div class="myBlueBox">
-				<h2>Title 2</h2>
-				 <ul>
-					<p>- Over 10 years of experience </p>
-					<p>- Specialized in property and casualty treaty reinsurance</p>
-					<p>- Actuarial evaluations of complex treaty structures</p>				
-					<p>- Delivers exposure and experience ratings</p>
-					<p>- Access to an additional expert in peak periods</p>
-				</ul>
-			</div>
-			<hr>
-			<div class="myBlueBox">
-				<h2>Title 3</h2>
-				Text, text, text
-			</div>
-		</div>
+			
+	</div>
 		<?php include_once("myFooter.html"); ?>
 	</div>
 </div>

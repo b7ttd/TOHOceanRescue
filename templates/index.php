@@ -1,8 +1,14 @@
+<?php
+?>
 <!DOCTYPE html>
-<html>
+<html{
+    height:100%;
+        background-image: url('https://lishore.somassbu.org/sitegraphics/backgr.gif');
+		background-repeat: repeat;    background-attachment: fixed;
+}>
 <head>
 	<title>TOH Ocean Rescue</title>
-	<link rel = "icon" href="static/TownOfHempsteadLogo.ico" type = "images/x-icon">
+	<link rel = "icon" href="static/images/TownOfHempsteadLogo.ico" type = "images/x-icon">
 	<meta name="description" content="Ocean Rescue for Long Island, serving sine like, uh, a really long time..">
   	<meta name="keywords" content="Lifeguards">
   	<meta name="author" content="b7ttd">
@@ -12,8 +18,8 @@
 </head>
 <body id='Home'>
 <div class="myPageWrapper">
-		<div class="myPage">
-		<?php include_once("myTabs.html"); ?>
+		<div class="myPage" style="min-height: 150vh;">
+		<?php include 'myTabs.html'?>
 		<!--Begin index content-->
 		<div class="myPageContent">
 			<div class="myRow">
@@ -28,15 +34,20 @@
 					<p><a href="/templates/page2.php" class="myLinkButton">Read more...</a></p>
 				</div>
 				<div class="myCol myLeft myBlueBox">
-					<h2>PDFs</h2>
-					PDF Dump Below!
+					<h2>Documents</h2>
+					Important documents stored here.
 					<p><a href="/templates/pdfs.php" class="myLinkButton">Read more...</a></p>
+				</div>
+				<div class="myCol myRight myBlueBox">
+					<h2>Reports</h2>
+					Have concerns? Direct them here.
+					<p><a href="/templates/reports.php" class="myLinkButton">Read more...</a></p>
 				</div>
 			</div>
 		<br>
 		</div><!--endOfPageContent-->
 		<hr>
-		<?php include_once("myFooter.html"); ?>
+		<?php include 'myFooter.html'?>
 	</div> <!--endOfPage-->
 </div><!--endOfPageWrapper-->
 </body>
